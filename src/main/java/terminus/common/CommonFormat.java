@@ -40,12 +40,7 @@ public class CommonFormat {
     }
 
     public static boolean isArrayEmpty(ArrayList<String> argArray) {
-        for (String s : argArray) {
-            if (s.isBlank()) {
-                return true;
-            }
-        }
-        return false;
+        return argArray.stream().anyMatch(String::isBlank);
     }
 
     public static LocalTime localTimeConverter(String startTime) throws InvalidTimeFormatException {

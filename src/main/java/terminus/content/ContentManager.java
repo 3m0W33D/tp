@@ -36,7 +36,7 @@ public class ContentManager {
     }
 
     public String getContentData(int contentNumber) throws InvalidArgumentException {
-        if (!isValidNumber(contentNumber)) {
+        if (isNotValidNumber(contentNumber)) {
             throw new InvalidArgumentException(Messages.ERROR_MESSAGE_EMPTY_CONTENTS);
         }
         return contents.get(contentNumber - 1).getDisplayInfo();
@@ -51,7 +51,7 @@ public class ContentManager {
     }
 
     public String deleteContent(int contentNumber) throws InvalidArgumentException {
-        if (!isValidNumber(contentNumber)) {
+        if (isNotValidNumber(contentNumber)) {
             throw new InvalidArgumentException(Messages.ERROR_MESSAGE_EMPTY_CONTENTS);
         }
         String deletedContentName = contents.get(contentNumber - 1).getName();
@@ -59,7 +59,7 @@ public class ContentManager {
         return deletedContentName;
     }
 
-    private boolean isValidNumber(int number) {
-        return !(number < 1 || number > contents.size());
+    private boolean isNotValidNumber(int number) {
+        return number < 1 || number > contents.size();
     }
 }

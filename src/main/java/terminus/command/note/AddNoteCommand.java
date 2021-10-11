@@ -57,12 +57,8 @@ public class AddNoteCommand extends Command {
     }
 
     private boolean isValidNoteArguments(ArrayList<String> argArray) {
-        boolean isValid = true;
-        if (argArray.size() != ADD_NOTE_ARGUMENTS) {
-            isValid = false;
-        } else if (CommonFormat.isArrayEmpty(argArray)) {
-            isValid = false;
-        }
-        return isValid;
+        boolean sizeCheck = argArray.size() == ADD_NOTE_ARGUMENTS;
+        boolean isEmpty = CommonFormat.isArrayEmpty(argArray);
+        return sizeCheck && !isEmpty;
     }
 }
