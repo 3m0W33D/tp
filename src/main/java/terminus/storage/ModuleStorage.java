@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import terminus.module.NusModule;
 
 public class ModuleStorage {
-    
+
     private final Path filePath;
     private final Gson gson;
 
@@ -16,7 +16,7 @@ public class ModuleStorage {
         this.filePath = filePath;
         this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
-    
+
     private void initializeFile() throws IOException {
         if (!Files.isDirectory(filePath.getParent())) {
             Files.createDirectories(filePath.getParent());
@@ -25,7 +25,7 @@ public class ModuleStorage {
             Files.createFile(filePath);
         }
     }
-    
+
     public NusModule loadFile() throws IOException {
         initializeFile();
         if (!Files.isReadable(filePath)) {
@@ -33,11 +33,10 @@ public class ModuleStorage {
         }
         return gson.fromJson(Files.newBufferedReader(filePath), NusModule.class);
     }
-    
+
     public void saveFile(NusModule module) throws IOException {
         initializeFile();
         String jsonString = gson.toJson(module);
         Files.writeString(filePath, jsonString);
     }
-    
 }
